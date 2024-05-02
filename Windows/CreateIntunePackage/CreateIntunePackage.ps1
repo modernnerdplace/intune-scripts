@@ -1,7 +1,7 @@
 <#
 .SYNOPSIS
 
-Special thanks to 1do for sponsering this script!
+Special thanks to 1do for sponsoring this script!
 
 This PowerShell script is used to set up utilities and tools for creating Intune packages. It checks for the existence of certain utilities and downloads them if they are not found.
 
@@ -313,7 +313,7 @@ function GenerateIntuneWinPackages {
         if ($selectedFile.Extension -eq ".ps1") {
             $baseName = [System.IO.Path]::GetFileNameWithoutExtension($selectedFile.Name)
             $logFileName = "$baseName.txt"
-            $installCommand = "Powershell.exe -NoProfile -ExecutionPolicy ByPass -Command ""& { md C:\IT\logs -ErrorAction SilentlyContinue; .\$($selectedFile.Name) -Verbose *> %programdata%\Microsoft\IntuneManagementExtension\Logs\$logFileName }"""
+            $installCommand = "Powershell.exe -NoProfile -ExecutionPolicy ByPass -Command ""& { .\$($selectedFile.Name) -Verbose *> %programdata%\Microsoft\IntuneManagementExtension\Logs\$logFileName }"""
 
             # Search for uninstall scripts
             $uninstallScript = Get-ChildItem -Path $Params.ScriptDir -Filter "*.ps1" | Where-Object {
@@ -325,7 +325,7 @@ function GenerateIntuneWinPackages {
                 $uninstallCommand = $installCommand
             } else {
                 $uninstallLogFileName = "$($uninstallScript.BaseName).txt"
-                $uninstallCommand = "Powershell.exe -NoProfile -ExecutionPolicy ByPass -Command ""& { md C:\IT\logs -ErrorAction SilentlyContinue; .\$($uninstallScript.Name) -Verbose *> %programdata%\Microsoft\IntuneManagementExtension\Logs\$uninstallLogFileName }"""
+                $uninstallCommand = "Powershell.exe -NoProfile -ExecutionPolicy ByPass -Command ""& { .\$($uninstallScript.Name) -Verbose *> %programdata%\Microsoft\IntuneManagementExtension\Logs\$uninstallLogFileName }"""
             }
 
             $commandText = 
