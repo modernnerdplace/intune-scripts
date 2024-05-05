@@ -1,7 +1,7 @@
 <#
 .SYNOPSIS
 
-Special thanks to 1do for sponsering this script!
+Special thanks to 1do for sponsoring this script!
 
 This PowerShell script is used to set up utilities and tools for creating Intune packages. It checks for the existence of certain utilities and downloads them if they are not found.
 
@@ -313,7 +313,7 @@ function GenerateIntuneWinPackages {
         if ($selectedFile.Extension -eq ".ps1") {
             $baseName = [System.IO.Path]::GetFileNameWithoutExtension($selectedFile.Name)
             $logFileName = "$baseName.txt"
-            $installCommand = "Powershell.exe -NoProfile -ExecutionPolicy ByPass -Command ""& { md C:\IT\logs -ErrorAction SilentlyContinue; .\$($selectedFile.Name) -Verbose *> %programdata%\Microsoft\IntuneManagementExtension\Logs\$logFileName }"""
+            $installCommand = "Powershell.exe -NoProfile -ExecutionPolicy ByPass -Command ""& { .\$($selectedFile.Name) -Verbose *> %programdata%\Microsoft\IntuneManagementExtension\Logs\$logFileName }"""
 
             # Search for uninstall scripts
             $uninstallScript = Get-ChildItem -Path $Params.ScriptDir -Filter "*.ps1" | Where-Object {
@@ -325,7 +325,7 @@ function GenerateIntuneWinPackages {
                 $uninstallCommand = $installCommand
             } else {
                 $uninstallLogFileName = "$($uninstallScript.BaseName).txt"
-                $uninstallCommand = "Powershell.exe -NoProfile -ExecutionPolicy ByPass -Command ""& { md C:\IT\logs -ErrorAction SilentlyContinue; .\$($uninstallScript.Name) -Verbose *> %programdata%\Microsoft\IntuneManagementExtension\Logs\$uninstallLogFileName }"""
+                $uninstallCommand = "Powershell.exe -NoProfile -ExecutionPolicy ByPass -Command ""& { .\$($uninstallScript.Name) -Verbose *> %programdata%\Microsoft\IntuneManagementExtension\Logs\$uninstallLogFileName }"""
             }
 
             $commandText = 
@@ -366,9 +366,9 @@ Write-Host "Made by Boyd Heeres" -ForegroundColor Darkblue
 write-host " "
 
 # Check Utility Existence
-SetupTools -UtilityPath $Params.ConvertExe -DownloadUrl "https://github.com/Nakazen/MNP-intune-scripts/raw/main/Windows/CreateIntunePackage/Tools/convert.exe" -TargetFolder (Split-Path $Params.ConvertExe)
+SetupTools -UtilityPath $Params.ConvertExe -DownloadUrl "https://github.com/modernnerdplace/intune-scripts/raw/main/Windows/CreateIntunePackage/Tools/convert.exe" -TargetFolder (Split-Path $Params.ConvertExe)
 SetupTools -UtilityPath $Params.IntuneWinAppUtil -DownloadUrl "https://github.com/microsoft/Microsoft-Win32-Content-Prep-Tool/raw/v1.8.6/IntuneWinAppUtil.exe" -TargetFolder (Split-Path $Params.IntuneWinAppUtil)
-SetupTools -UtilityPath $Params.ExtractIcon -DownloadUrl "https://github.com/Nakazen/MNP-intune-scripts/raw/main/Windows/CreateIntunePackage/Tools/extracticon.exe" -TargetFolder (Split-Path $Params.ExtractIcon)
+SetupTools -UtilityPath $Params.ExtractIcon -DownloadUrl "https://github.com/modernnerdplace/intune-scripts/raw/main/Windows/CreateIntunePackage/Tools/extracticon.exe" -TargetFolder (Split-Path $Params.ExtractIcon)
 
 # Icon extraction
 Write-Host "First time? Read the Synopsis and modify the Settable parameters section in the script." -ForegroundColor DarkGray
