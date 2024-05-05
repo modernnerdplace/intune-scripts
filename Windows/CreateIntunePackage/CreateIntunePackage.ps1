@@ -366,9 +366,9 @@ Write-Host "Made by Boyd Heeres" -ForegroundColor Darkblue
 write-host " "
 
 # Check Utility Existence
-SetupTools -UtilityPath $Params.ConvertExe -DownloadUrl "https://github.com/Nakazen/MNP-intune-scripts/raw/main/Windows/CreateIntunePackage/Tools/convert.exe" -TargetFolder (Split-Path $Params.ConvertExe)
+SetupTools -UtilityPath $Params.ConvertExe -DownloadUrl "https://github.com/modernnerdplace/intune-scripts/raw/main/Windows/CreateIntunePackage/Tools/convert.exe" -TargetFolder (Split-Path $Params.ConvertExe)
 SetupTools -UtilityPath $Params.IntuneWinAppUtil -DownloadUrl "https://github.com/microsoft/Microsoft-Win32-Content-Prep-Tool/raw/v1.8.6/IntuneWinAppUtil.exe" -TargetFolder (Split-Path $Params.IntuneWinAppUtil)
-SetupTools -UtilityPath $Params.ExtractIcon -DownloadUrl "https://github.com/Nakazen/MNP-intune-scripts/raw/main/Windows/CreateIntunePackage/Tools/extracticon.exe" -TargetFolder (Split-Path $Params.ExtractIcon)
+SetupTools -UtilityPath $Params.ExtractIcon -DownloadUrl "https://github.com/modernnerdplace/intune-scripts/raw/main/Windows/CreateIntunePackage/Tools/extracticon.exe" -TargetFolder (Split-Path $Params.ExtractIcon)
 
 # Icon extraction
 Write-Host "First time? Read the Synopsis and modify the Settable parameters section in the script." -ForegroundColor DarkGray
