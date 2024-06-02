@@ -1,6 +1,12 @@
 # Dit PowerShell-script wijzigt de taakbalkuitlijning naar links op een Windows 11-systeem.
 # Het doet dit door een registerinstelling te wijzigen en vervolgens de Windows Verkenner opnieuw op te starten om de wijzigingen door te voeren.
-# LET OP: Het opnieuw starten van Windows Verkenner kan impact hebben op de gebruikerservaring, omdat alle geopende Verkenner-vensters worden gesloten en opnieuw geopend.
+
+########################### WARNING ################################
+###                                                              ###
+###               Explorer krijgt een restart                    ###
+###                                                              ###
+########################### WARNING ################################
+
 
 # Definitie van het registerpad en de naam van de waarde die moet worden gewijzigd
 $registryPath = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced"
